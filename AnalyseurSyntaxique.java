@@ -537,7 +537,12 @@ public class AnalyseurSyntaxique {
      */
     public void afficherErreurs() {
         if (erreurs.isEmpty()) {
+           if (error) {
+            // Il y a eu une erreur mais la liste est vide ?
+            System.out.println("⚠ Erreurs détectées pendant l'analyse\n");
+        } else {
             System.out.println("✓ Aucune erreur syntaxique détectée\n");
+        }
         } else {
             System.out.println("\n" + "=".repeat(70));
             System.out.println("                  ERREURS SYNTAXIQUES DÉTECTÉES");
@@ -568,7 +573,7 @@ public class AnalyseurSyntaxique {
         
         // Créer l'analyseur lexical
         AnalyseurLexical lexer = new AnalyseurLexical("");
-        String code = lexer.lireFichier("test.java");
+        String code = lexer.lireFichier("test.java");//chemin relatif
         
         if (code == null) {
             System.err.println("Erreur : Impossible de lire test.java\n");
